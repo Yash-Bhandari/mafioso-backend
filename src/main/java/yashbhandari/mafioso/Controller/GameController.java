@@ -19,7 +19,7 @@ import java.util.List;
 @RequestMapping("/mafioso")
 public class GameController {
 
-    public static final String baseURL = "http://localhost:8080/mafioso/";
+    public static final String baseURL = "https://mafioso-app.herokuapp.com/mafioso/";
 
     private Logger logger = LoggerFactory.getLogger(GameController.class);
 
