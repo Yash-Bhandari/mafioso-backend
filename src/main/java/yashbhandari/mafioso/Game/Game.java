@@ -1,12 +1,14 @@
 package yashbhandari.mafioso.Game;
 
 import java.util.*;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class Game {
     private Map<Integer, Role> roles;
     private int hostId;
+    private Random rand = new Random();
 
     public Game(String... roles){
         this.roles = new HashMap<>();
@@ -72,11 +74,12 @@ public class Game {
     }
 
     private int findEmptyId() {
-        return roles.entrySet().stream()
+        List<Integer> emptyIds = roles.entrySet().stream()
                 .filter(entry -> !entry.getValue().isFilled())
-                .findAny()
-                .get()
-                .getKey();
+                .map(entry -> entry.getKey())
+                .collect(Collectors.toList());
+
+        return emptyIds.get(rand.nextInt(emptyIds.size()));
     }
 
     private boolean nameAvailable(String name) {
