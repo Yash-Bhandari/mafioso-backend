@@ -23,6 +23,7 @@ public class Game {
     }
 
     public int addPlayer(String playerName){
+
         if(!filled() && nameAvailable(playerName)) {
             int emptyId = findEmptyId();
             roles.get(emptyId).fillRole(playerName);
@@ -84,7 +85,7 @@ public class Game {
 
     private boolean nameAvailable(String name) {
         return roles.values().stream()
-                .noneMatch(role -> role.getPlayerName() == name);
+                .noneMatch(role -> role.getPlayerName().equals(name));
     }
 
 
