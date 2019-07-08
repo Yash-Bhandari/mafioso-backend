@@ -15,7 +15,7 @@ import java.net.URI;
 import java.util.List;
 
 @RestController
-@CrossOrigin(exposedHeaders = {"Location", "gameCode", "role"})
+@CrossOrigin(exposedHeaders = {"Location", "gameCode", "role", "id"})
 @RequestMapping("/mafioso")
 public class GameController {
 
@@ -45,7 +45,7 @@ public class GameController {
         String role = gameService.getRoleList(gameCode, playerId).get(0).getRoleName();
         return ResponseEntity.created(new URI(baseURL+gameCode+"/"+playerId))
                 .header("role", role)
-                .header("playerId", String.valueOf(playerId))
+                .header("id", String.valueOf(playerId))
                 .build();
     }
 
