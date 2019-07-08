@@ -43,6 +43,14 @@ public class GameService {
         return gameMap.containsKey(gameCode);
     }
 
+    //Returns true if successfully deleted
+    public boolean endGame(String gameCode, int hostId){
+        if (gameMap.containsKey(gameCode) && gameMap.get(gameCode).getHostId() == hostId) {
+            gameMap.remove(gameCode);
+            return true;
+        }
+        return false;
+    }
 
     private String uniqueCode(int length){
 

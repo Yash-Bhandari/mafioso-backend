@@ -49,10 +49,19 @@ public class GameController {
                 .build();
     }
 
-    @RequestMapping(path = "/{gameCode}/{playerId}", method = RequestMethod.GET)
+    @RequestMapping(path = "/{gameCode}/{id}", method = RequestMethod.GET)
     public List<Role> getRole(@PathVariable(name = "gameCode") String gameCode,
-                        @PathVariable(name="playerId") int playerId) {
-        return gameService.getRoleList(gameCode, playerId);
+                        @PathVariable(name="id") int id) {
+        return gameService.getRoleList(gameCode, id);
+    }
+
+    @RequestMapping(path = "/{gameCode}/{playerId}", method = RequestMethod.DELETE)
+    public ResponseEntity<Void> deleteGame(@PathVariable(name = "gameCode") String gameCode,
+                              @PathVariable(name="id") int id) {
+        if (gameService.endGame(gameCode, id))
+            return ResponseEntity.ok().build();
+
+        return ResponseEntity.badRequest().build();
     }
 
     @RequestMapping(path = "/{gameCode}", method = RequestMethod.GET)
