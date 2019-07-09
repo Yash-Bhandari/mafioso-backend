@@ -54,7 +54,7 @@ public class Game {
     public List<String> getPlayerNames() {
         return roles.values().stream()
                 .map(role -> role.getPlayerName())
-                .filter(name -> name != null)
+                .filter(name -> name != "")
                 .collect(Collectors.toList());
     }
 
