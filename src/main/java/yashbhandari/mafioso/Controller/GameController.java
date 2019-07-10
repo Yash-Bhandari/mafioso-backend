@@ -28,9 +28,10 @@ public class GameController {
 
     @RequestMapping(path = "/create", method = RequestMethod.POST)
     public ResponseEntity<Void> createGame(@RequestBody CreateRequest req) throws Exception{
-        String gameCode = gameService.createGame(req.getRoles());
-        return ResponseEntity.created(new URI(baseURL + gameCode))
-                .header("gameCode", gameCode)
+        String[] gameCodeAndId = gameService.createGame(req.getRoles());
+        return ResponseEntity.created(new URI(baseURL + gameCodeAndId[0]))
+                .header("gameCode", gameCodeAndId[0])
+                .header("id", gameCodeAndId[1])
                 .build();
     }
 

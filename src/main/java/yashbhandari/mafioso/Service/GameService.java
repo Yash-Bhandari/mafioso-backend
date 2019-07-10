@@ -18,11 +18,14 @@ public class GameService {
     private Map<String, Game> gameMap = new HashMap<>();
     private Logger logger = LoggerFactory.getLogger(GameService.class);
 
-    public String createGame(String... roles) {
+    //Returns array with two elements: gameCode and id
+    public String[] createGame(String... roles) {
         String gameCode = uniqueCode(3);
         gameMap.put(gameCode, new Game(roles));
+        int id = gameMap.get(gameCode).getHostId();
         logger.info(String.format("Game created with code %s", gameCode));
-        return gameCode;
+        String[] out = {gameCode, String.valueOf(id)};
+        return out;
     }
 
     public PlayerAndRoleList getPlayerAndRoleList(String gameCode){
