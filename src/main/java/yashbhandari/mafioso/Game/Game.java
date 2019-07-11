@@ -63,6 +63,14 @@ public class Game {
                 .allMatch(role -> role.isFilled());
     }
 
+    public void killPlayer(String playerName){
+        roles.values().stream()
+                .filter(role -> role.getPlayerName().equals(playerName))
+                .findAny()
+                .get()
+                .setAlive(false);
+    }
+
     private Integer uniqueID(){
         Random rand = new Random();
         int id;
