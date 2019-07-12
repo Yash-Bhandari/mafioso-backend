@@ -56,7 +56,17 @@ public class GameController {
         return gameService.getRoleList(gameCode, id);
     }
 
-    @RequestMapping(path = "/{gameCode}/{playerId}", method = RequestMethod.DELETE)
+    @RequestMapping(path = "/{gameCode}/{id}", method = RequestMethod.PUT)
+    public ResponseEntity<Void> killPlayer(@PathVariable(name = "gameCode") String gameCode,
+                                           @PathVariable(name="id") int id,
+                                           @RequestParam(name="playerName") String playerName) {
+        if (gameService.killPlayer(gameCode, id,playerName))
+            return ResponseEntity.ok().build();
+
+        return ResponseEntity.notFound().build();
+    }
+
+    @RequestMapping(path = "/{gameCode}/{id}", method = RequestMethod.DELETE)
     public ResponseEntity<Void> deleteGame(@PathVariable(name = "gameCode") String gameCode,
                               @PathVariable(name="id") int id) {
         if (gameService.endGame(gameCode, id))

@@ -63,12 +63,16 @@ public class Game {
                 .allMatch(role -> role.isFilled());
     }
 
-    public void killPlayer(String playerName){
+    //Returns false if player not found with given name
+    public boolean killPlayer(String playerName){
+        if(!getPlayerNames().contains(playerName))
+            return false;
         roles.values().stream()
                 .filter(role -> role.getPlayerName().equals(playerName))
                 .findAny()
                 .get()
                 .setAlive(false);
+        return true;
     }
 
     private Integer uniqueID(){

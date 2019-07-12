@@ -55,6 +55,10 @@ public class GameService {
         return false;
     }
 
+    public boolean killPlayer(String gameCode, int id, String playerName){
+        return gameMap.get(gameCode).killPlayer(playerName);
+    }
+
     private String uniqueCode(int length){
 
         String gameCode;
